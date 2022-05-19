@@ -1,8 +1,17 @@
 import { Motorcycle } from "./Motorcycle";
 
 class Factory {
-  name: string;
-  motorcycles: Motorcycle[];
+  private _motorcycles: Motorcycle[];
+
+  constructor(private _name: string) {}
+
+  public get name(): string {
+    return this._name;
+  }
+
+  public addMotorcycle(motorcycle: Motorcycle): void {
+    this._motorcycles.push(motorcycle);
+  }
 }
 
 export { Factory };

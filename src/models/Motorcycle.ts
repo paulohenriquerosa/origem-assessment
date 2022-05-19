@@ -8,7 +8,7 @@ interface IDatapayload {
   mileage: number;
   battery?: {
     id: number;
-    charge: number;
+    charge: string;
   };
 }
 
@@ -16,6 +16,28 @@ class Motorcycle {
   private _chassi: string;
   private _battery?: Battery;
   private _mileage: number;
+
+  private _isRunning: boolean;
+
+  constructor() {
+    if (!this._chassi) {
+      this._chassi = generateChassi();
+      this._isRunning = false;
+      this._mileage = 0;
+    }
+  }
+
+  public start(): void {
+    this._isRunning = true;
+  }
+
+  public powerOff(): void {
+    this._isRunning = false;
+  }
+
+  public get isRunning(): boolean {
+    return this._isRunning;
+  }
 
   public telemetry(): IDatapayload {
     const data = {
@@ -49,10 +71,11 @@ class Motorcycle {
     return topic;
   }
 
-  constructor() {
-    if (!this._chassi) {
-      this._chassi = generateChassi();
+  public set mileage(mile: number) {
+    if (mile < 0) {
+      throw Error("Action not allowed");
     }
+    this._mileage += mile;
   }
 }
 

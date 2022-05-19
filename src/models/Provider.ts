@@ -1,8 +1,17 @@
 import { Battery } from "./Battery";
 
 class Provider {
-  name: string;
-  batteries: Battery[];
+  private _batteries: Battery[];
+
+  constructor(private _name: string) {}
+
+  public get name(): string {
+    return this._name;
+  }
+
+  public addMotorcycle(battery: Battery): void {
+    this._batteries.push(battery);
+  }
 }
 
 export { Provider };
