@@ -1,10 +1,11 @@
 import { generateId } from "../utils/generateId";
+import { Provider } from "./Provider";
 
 class Battery {
   protected _id: number;
   protected _charge: number;
 
-  constructor() {
+  constructor(private _provider: Provider) {
     if (!this._id) {
       this._id = generateId();
       this._charge = 100;
@@ -17,6 +18,10 @@ class Battery {
 
   public get charge(): string {
     return `${Math.round(this._charge * 100) / 100}%`;
+  }
+
+  public get provider(): string {
+    return this._provider.name;
   }
 
   public decreaseCharge(value: number): void {

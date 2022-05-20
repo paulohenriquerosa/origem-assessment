@@ -1,15 +1,19 @@
+import { Battery } from "../models/Battery";
 import { Motorcycle } from "../models/Motorcycle";
+import { Provider } from "../models/Provider";
 
 export enum States {
   On = "On",
   Off = "Off",
   DraweOpen = "DrawerOpen",
   Running = "Running",
+  InsertBattery = "InsertBattery",
+  TakeBattery = "TakeBattery",
 }
 
 interface IStates {
   state: States;
-  validation: (state: States) => boolean;
+  validation: () => boolean;
 }
 
 class MotorState {
@@ -18,24 +22,32 @@ class MotorState {
   private _timerId: NodeJS.Timer;
 
   constructor(private _motorcycle: Motorcycle) {
-    this._currentState = States.Off;
+    this._currentState = States.DraweOpen;
 
     this._states = [
       {
         state: States.Off,
-        validation: this.checkOffState,
+        validation: this._checkOffState.bind(this),
       },
       {
         state: States.On,
-        validation: this.checkOnState,
+        validation: this._checkOnState.bind(this),
       },
       {
         state: States.DraweOpen,
-        validation: this.checkDrawerOpenState,
+        validation: this._checkDrawerOpenState.bind(this),
       },
       {
         state: States.Running,
-        validation: this.checkRunningState,
+        validation: this._checkRunningState.bind(this),
+      },
+      {
+        state: States.InsertBattery,
+        validation: this._checkInserBatteryState.bind(this),
+      },
+      {
+        state: States.TakeBattery,
+        validation: this._checkRemoveBatteryState.bind(this),
       },
     ];
 
@@ -45,7 +57,7 @@ class MotorState {
   public updateSate(newState: States): void {
     const state = this._states.find(item => item.state === newState);
 
-    if (state?.validation(this._currentState)) {
+    if (state?.validation()) {
       this._currentState = newState;
     }
 
@@ -73,6 +85,8 @@ class MotorState {
   }
 
   private _runningState() {
+    this._stopSendData();
+
     this._motorcycle.start();
 
     this._timerId = setInterval(() => {
@@ -84,24 +98,48 @@ class MotorState {
     console.log("Moto Running");
   }
 
-  public checkOffState(state: States): boolean {
-    return state === States.On;
+  private _insertBatteryState() {
+    console.log("Insert battery");
+    const battery = new Battery(new Provider("Power People"));
+    this._motorcycle.insertBattery(battery);
+    this._currentState = States.DraweOpen;
+    this.run();
   }
 
-  public checkOnState(state: States): boolean {
+  private _removeBatteryState() {
+    console.log("Remove battery");
+    this._motorcycle.removeBattery();
+
+    this._currentState = States.DraweOpen;
+    this.run();
+  }
+
+  private _checkOffState(): boolean {
+    return this._currentState === States.On;
+  }
+
+  private _checkOnState(): boolean {
     return (
-      state === States.Off ||
-      state === States.DraweOpen ||
-      state === States.Running
+      this._currentState === States.Off ||
+      this._currentState === States.DraweOpen ||
+      this._currentState === States.Running
     );
   }
 
-  public checkDrawerOpenState(state: States): boolean {
-    return state === States.On;
+  private _checkDrawerOpenState(): boolean {
+    return this._currentState === States.On;
   }
 
-  public checkRunningState(state: States): boolean {
-    return state === States.On;
+  private _checkRunningState(): boolean {
+    return this._currentState === States.On && this._motorcycle.bettery;
+  }
+
+  private _checkInserBatteryState(): boolean {
+    return this._currentState === States.DraweOpen && !this._motorcycle.bettery;
+  }
+
+  private _checkRemoveBatteryState(): boolean {
+    return this._currentState === States.DraweOpen && this._motorcycle.bettery;
   }
 
   public run(): void {
@@ -120,6 +158,14 @@ class MotorState {
 
       case States.Running:
         this._runningState();
+        break;
+
+      case States.InsertBattery:
+        this._insertBatteryState();
+        break;
+
+      case States.TakeBattery:
+        this._removeBatteryState();
         break;
 
       default:

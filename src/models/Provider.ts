@@ -9,7 +9,7 @@ class Provider {
     return this._name;
   }
 
-  public addMotorcycle(battery: Battery): void {
+  public addBattery(battery: Battery): void {
     this._batteries.push(battery);
   }
 }

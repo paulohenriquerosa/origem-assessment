@@ -1,7 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 import { communicationProvider } from "../communication";
 import { generateChassi } from "../utils/generateChassi";
 import { Battery } from "./Battery";
+import { Factory } from "./Factory";
 
 interface IDatapayload {
   chassi: string;
@@ -9,6 +9,7 @@ interface IDatapayload {
   battery?: {
     id: number;
     charge: string;
+    provider: string;
   };
 }
 
@@ -22,6 +23,7 @@ class Motorcycle {
   private _topic: string;
 
   constructor(
+    private _factory: Factory,
     private _clientCommunication: typeof communicationProvider,
     private _battery?: Battery
   ) {
@@ -52,6 +54,14 @@ class Motorcycle {
     return this._chassi;
   }
 
+  public get topic(): string {
+    return this._topic;
+  }
+
+  public get bettery(): boolean {
+    return !!this._battery;
+  }
+
   public start(): void {
     this._isRunning = true;
   }
@@ -80,6 +90,7 @@ class Motorcycle {
     const data = {
       chassi: this._chassi,
       mileage: this._mileage,
+      factory: this._factory.name,
     };
 
     if (this._battery) {
@@ -88,6 +99,7 @@ class Motorcycle {
         battery: {
           id: this._battery.id,
           charge: this._battery.charge,
+          provider: this._battery.provider,
         },
       };
     }

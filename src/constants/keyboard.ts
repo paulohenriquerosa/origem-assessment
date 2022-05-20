@@ -1,10 +1,30 @@
-enum KeyBoard {
-  EXIT = "q",
-  MOTOR_ON = "o",
-  MOTOR_OFF = "f",
-  RUNNING = "r",
-  OPEN_DRAWER = "d",
-  CLOSE_DRAWER = "c",
-}
+import { States } from "../state/MotorState";
 
-export { KeyBoard };
+const keyboarAction = [
+  {
+    key: "o",
+    action: States.On,
+  },
+  {
+    key: "f",
+    action: States.Off,
+  },
+  {
+    key: "r",
+    action: States.Running,
+  },
+  {
+    key: "d",
+    action: States.DraweOpen,
+  },
+  {
+    key: "i",
+    action: States.InsertBattery,
+  },
+  {
+    key: "t",
+    action: States.TakeBattery,
+  },
+];
+
+export { keyboarAction };
