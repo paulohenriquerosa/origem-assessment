@@ -1,10 +1,8 @@
 import { generateId } from "../utils/generateId";
-import { Provider } from "./Provider";
 
 class Battery {
-  private _id: number;
-  private _charge: number;
-  provider: Provider;
+  protected _id: number;
+  protected _charge: number;
 
   constructor() {
     if (!this._id) {

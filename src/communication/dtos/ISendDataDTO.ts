@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface ISendDataDTO {
   topic: string;
-  data: Record<string, unknown>;
+  data: any;
 }
 
 export { ISendDataDTO };

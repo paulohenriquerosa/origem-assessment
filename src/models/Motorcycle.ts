@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import { generateChassi } from "utils/generateChassi";
-
+import { communicationProvider } from "../communication";
+import { generateChassi } from "../utils/generateChassi";
 import { Battery } from "./Battery";
 
 interface IDatapayload {
@@ -14,17 +14,25 @@ interface IDatapayload {
 
 class Motorcycle {
   private _chassi: string;
-  private _battery?: Battery;
   private _mileage: number;
 
+  private _drawerOpen: boolean;
   private _isRunning: boolean;
 
-  constructor() {
+  constructor(
+    private _clientCommunication: typeof communicationProvider,
+    private _battery?: Battery
+  ) {
     if (!this._chassi) {
       this._chassi = generateChassi();
       this._isRunning = false;
+      this._drawerOpen = false;
       this._mileage = 0;
     }
+  }
+
+  public get chassi(): string {
+    return this._chassi;
   }
 
   public start(): void {
@@ -39,7 +47,19 @@ class Motorcycle {
     return this._isRunning;
   }
 
-  public telemetry(): IDatapayload {
+  public get draweOpen(): boolean {
+    return this._drawerOpen;
+  }
+
+  public openDrawer(): void {
+    this._drawerOpen = true;
+  }
+
+  public closeDrawer(): void {
+    this._drawerOpen = false;
+  }
+
+  private _telemetry(): IDatapayload {
     const data = {
       chassi: this._chassi,
       mileage: this._mileage,
@@ -59,23 +79,37 @@ class Motorcycle {
   }
 
   public removeBattery(): void {
+    if (this._drawerOpen) {
+      throw Error("Action not allowed");
+    }
     this._battery = undefined;
   }
 
   public insertBattery(battery: Battery): void {
+    if (this._drawerOpen) {
+      throw Error("Action not allowed");
+    }
     this._battery = battery;
   }
 
-  public sendData(): string {
+  public sendData(): void {
     const topic = `bike/telemetry/${this._chassi}`;
-    return topic;
+    const data = this._telemetry();
+    this._clientCommunication.sendData({ topic, data });
   }
 
-  public set mileage(mile: number) {
+  public mileage(mile: number): void {
     if (mile < 0) {
       throw Error("Action not allowed");
     }
     this._mileage += mile;
+  }
+
+  public decreaseCharge(value: number): void {
+    if (!this._battery) {
+      throw Error("Action not allowed");
+    }
+    this._battery.decreaseCharge(value);
   }
 }
 
