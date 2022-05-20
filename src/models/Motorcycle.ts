@@ -14,10 +14,12 @@ interface IDatapayload {
 
 class Motorcycle {
   private _chassi: string;
-  private _mileage: number;
+  private _mileage = 0;
 
-  private _drawerOpen: boolean;
-  private _isRunning: boolean;
+  private _drawerOpen = false;
+  private _isRunning = false;
+
+  private _topic: string;
 
   constructor(
     private _clientCommunication: typeof communicationProvider,
@@ -25,9 +27,24 @@ class Motorcycle {
   ) {
     if (!this._chassi) {
       this._chassi = generateChassi();
-      this._isRunning = false;
-      this._drawerOpen = false;
-      this._mileage = 0;
+      this._setCommunication();
+    }
+  }
+
+  private _setCommunication() {
+    this._topic = `bike/telemetry/${this._chassi}`;
+    this._clientCommunication.subscribe(this._topic);
+    this._clientCommunication.receiveData({
+      callback: this._requestData,
+      context: this,
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private _requestData(topic: string, message: Buffer, self: any): void {
+    const data = JSON.parse(message.toString());
+    if (data?.request_data) {
+      self.sendData(self);
     }
   }
 
@@ -92,10 +109,9 @@ class Motorcycle {
     this._battery = battery;
   }
 
-  public sendData(): void {
-    const topic = `bike/telemetry/${this._chassi}`;
-    const data = this._telemetry();
-    this._clientCommunication.sendData({ topic, data });
+  public sendData(self = this): void {
+    const data = self._telemetry();
+    self._clientCommunication.sendData({ topic: self._topic, data });
   }
 
   public mileage(mile: number): void {

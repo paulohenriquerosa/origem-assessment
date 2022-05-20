@@ -1,6 +1,7 @@
 import { connect, MqttClient } from "mqtt";
 
 import { mqttConfig } from "../../config/mqtt";
+import { IReceiveDataDTO } from "../dtos/IReceiveDataDTO";
 import { ISendDataDTO } from "../dtos/ISendDataDTO";
 import { ICommunication } from "../model/ICommunication";
 
@@ -28,6 +29,16 @@ class MQTTProvider implements ICommunication {
 
   public disconnect(): void {
     this._client.end();
+  }
+
+  public receiveData({ callback, context }: IReceiveDataDTO): void {
+    this._client.on("message", (topic, message) => {
+      callback(topic, message, context);
+    });
+  }
+
+  public subscribe(topic: string): void {
+    this._client.subscribe(topic);
   }
 }
 

@@ -16,7 +16,7 @@ class Battery {
   }
 
   public get charge(): string {
-    return `${this._charge}%`;
+    return `${Math.round(this._charge * 100) / 100}%`;
   }
 
   public decreaseCharge(value: number): void {

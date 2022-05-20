@@ -14,6 +14,8 @@ const battery = new Battery();
 const motorcycle = new Motorcycle(communication, battery);
 const motorState = new MotorState(motorcycle);
 
+console.log(motorcycle.chassi);
+
 readline.emitKeypressEvents(process.stdin);
 
 if (process.stdin.isTTY) process.stdin.setRawMode(true);
