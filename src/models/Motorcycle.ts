@@ -43,10 +43,10 @@ class Motorcycle {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private _requestData(topic: string, message: Buffer, self: any): void {
+  private _requestData(topic: string, message: Buffer, context: any): void {
     const data = JSON.parse(message.toString());
     if (data?.request_data) {
-      self.sendData(self);
+      context.sendData(context);
     }
   }
 

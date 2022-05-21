@@ -22,7 +22,7 @@ class MotorState {
   private _timerId: NodeJS.Timer;
 
   constructor(private _motorcycle: Motorcycle) {
-    this._currentState = States.DraweOpen;
+    this._currentState = States.Off;
 
     this._states = [
       {

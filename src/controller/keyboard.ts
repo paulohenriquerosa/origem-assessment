@@ -10,7 +10,10 @@ function handleKeyboard(motorState: MotorState): void {
 
   process.stdin.on("keypress", (chunk, key) => {
     if (key) {
-      if (key.name === "q") process.exit();
+      if (key.name === "q") {
+        console.log("Handle keyboard stoped");
+        process.exit();
+      }
       keyboarAction.forEach(item => {
         if (key.name === item.key) motorState.updateSate(item.action);
       });

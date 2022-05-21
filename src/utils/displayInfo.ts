@@ -11,7 +11,13 @@ function displayMotoInfo(motorcycle: Motorcycle): void {
 export { displayMotoInfo };
 
 function displayKeyboardInfo(): void {
-  console.table(keyboarAction);
+  console.table([
+    {
+      key: "q",
+      action: "Exit",
+    },
+    ...keyboarAction,
+  ]);
 }
 
 export { displayKeyboardInfo };
