@@ -75,9 +75,9 @@ Technologies that I used to develop this challenge:
 
 > Obs.: I recommend use Ubunut.
 
-### MQTT configuration
+### MQTT conection 
 
-Para usar o desafio você precisará criar um Broker MQTT [aqui](https://www.hivemq.com/mqtt-cloud-broker/). Você vai precisar dos dados de conexão para configurar as variáveis de ambiente. Como alternativa você poderá usar o Broker MQTT criado por mim, as configuração de conexão já estão configuradas por padrão caso não seja fornecido as variáveis de ambiente.
+Para usar o desafio você precisará criar um Broker MQTT [aqui](https://www.hivemq.com/mqtt-cloud-broker/). Você vai precisar dos dados de conexão para configurar as variáveis de ambiente.
 
 Os dados de conexão deve ser algo como isso:
 
@@ -86,6 +86,15 @@ host: string
 port: number
 username: string | number
 password: string | number
+```
+
+Como alternativa você poderá usar o Broker MQTT criado por mim, as configuração de conexão já estão configuradas por padrão caso não seja fornecido as variáveis de ambiente.
+
+```Typescript
+host= 32d98850657747fc807be83950237f1b.s1.eu.hivemq.cloud
+port= 8883
+username= paulohenriquerosa
+password= Paulo@2022
 ```
 
 Para publicar e receber informações você pode usar o cliente web [aqui](https://websocketclient.hivemq.cloud/). Basta usar as informações de conexão do Broker MQTT.
@@ -105,8 +114,8 @@ $ git clone https://github.com/paulohenriquerosa/origem-assessment.git && cd ori
 # Create the .env file
 $ touch .env
 
-# Make sure the keys in '.env' to connect with your Broker MQTT
-# are set up correctly as in .env.exaple file.
+# Make sure the variables in '.env' to connect with your Broker MQTT
+# are set up correctly as in .env.example file.
 
 # Install the dependencies
 $ yarn
