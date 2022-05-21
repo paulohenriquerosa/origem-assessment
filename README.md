@@ -149,7 +149,7 @@ Para poder utilizar o programa você deve usar alguns comandos e informações q
 
 
 
-Para receber informações você deve passar a seguinte dado na publicação
+Para receber informações da moto você deve enviar o seguinte dado na publicação
 
 ``` json
 {

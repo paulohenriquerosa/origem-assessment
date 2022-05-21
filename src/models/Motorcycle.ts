@@ -44,9 +44,14 @@ class Motorcycle {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _requestData(topic: string, message: Buffer, context: any): void {
-    const data = JSON.parse(message.toString());
-    if (data?.request_data) {
-      context.sendData(context);
+    try {
+      const data = JSON.parse(message.toString());
+
+      if (data?.request_data) {
+        context.sendData(context);
+      }
+    } catch (error) {
+      console.log("Invalida Syntax");
     }
   }
 
