@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Logo" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/logo-origem.png" width="200px" /> 
+  <img alt="Logo" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/logo-origem.png" width="400px" /> 
 </h1>
 
 <h3 align="center">
