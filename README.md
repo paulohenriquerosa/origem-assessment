@@ -1,10 +1,9 @@
 <h1 align="center">
   <img alt="Logo" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/logo-origem.png" width="200px" /> 
-  Origem Motos
 </h1>
 
 <h3 align="center">
-  Web development intern
+  Web development intern - Origem Motos
 </h3>
 
 
@@ -49,7 +48,7 @@ Para completar esse desafio foi utilizado o MQTT network protocol, sendo esse es
 
 Para implementar a maquina de estados finitos foi implementado o seguinte diagrama:
 
-<img alt="FSM" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/FSM.jpg" width="800px" /> 
+<img alt="FSM" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/FSM.jpg" width="600px" /> 
 
 
 ## 🚀 Technologies
