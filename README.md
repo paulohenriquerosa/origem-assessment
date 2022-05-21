@@ -91,10 +91,10 @@ password: string | number
 Como alternativa você poderá usar o Broker MQTT criado por mim, as configuração de conexão já estão configuradas por padrão caso não seja fornecido as variáveis de ambiente.
 
 ```Typescript
-host= 32d98850657747fc807be83950237f1b.s1.eu.hivemq.cloud
-port= 8883
-username= paulohenriquerosa
-password= Paulo@2022
+host=32d98850657747fc807be83950237f1b.s1.eu.hivemq.cloud
+port=8883
+username=paulohenriquerosa
+password=Paulo@2022
 ```
 
 Para publicar e receber informações você pode usar o cliente web [aqui](https://websocketclient.hivemq.cloud/). Basta usar as informações de conexão do Broker MQTT.
