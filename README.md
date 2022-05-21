@@ -3,8 +3,11 @@
 </h1>
 
 <h3 align="center">
-  Web development intern - Origem Motos
+  Estágio em desenvolvimento web  - Origem Motos
 </h3>
+<p align="center">
+  Origem Motos
+</p3>
 
 
 <p align="center">
@@ -28,32 +31,32 @@
 </p>
 
 <p align="center">
-  <a href="#-about-the-challenge">About the challenge</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-sobre-o-desafio">About the challenge</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-começar">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
 </p>
 
 
-## 👨🏻‍💻 About the challenge
+## 👨🏻‍💻 Sobre o desafio
 
-Em dispositivos IoT uma das principais caracteristica é a comunicação, afinal o I em IoT significa internet. Esse desafio tem como obejtivo desenvolver a troca de informação entre a moto elétrica e um servidor possibilitando o envio da telemetria.
+Em dispositivos IoT uma das principais caracteristica é a comunicação, afinal o I em IoT significa internet. Esse desafio tem como obejtivo desenvolver um programa para troca de informação entre a moto elétrica e um servidor possibilitando o envio da telemetria.
 
 
 Como bônus o desafio também sugere a implementação de uma maquina de estados finito (FSM) para controlar os possíveis estados que a moto pode ter.
 
-### Solution
+### Solução
 
-Para completar esse desafio foi utilizado o MQTT network protocol, sendo esse específico para comunicação para IoT. 
+Para completar esse desafio foi utilizado o protocolo de rede MQTT, sendo esse específico para comunicação para IoT. 
 
-Para implementar a maquina de estados finitos foi implementado o seguinte diagrama:
+Para implementar a maquina de estados finitos foi desenvolvido o seguinte diagrama:
 
 <img alt="FSM" src="https://github.com/paulohenriquerosa/origem-assessment/blob/main/img/FSM.jpg" width="600px" /> 
 
 
-## 🚀 Technologies
+## 🚀 Tecnologias
 
-Technologies that I used to develop this challenge:
+Tecnologias que eu usei para desenvolver este desafio:
 
 - [Node.js](https://nodejs.org/en/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -63,21 +66,21 @@ Technologies that I used to develop this challenge:
 - [Prettier](https://prettier.io/)
 - [EditorConfig](https://editorconfig.org/)
 
-## 💻 Getting started
+## 💻 Começar
 
 
 
-### Requirements
+### Requisistos
 
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/)
-- Operation System based in [Linux](https://www.linux.org/)
+- Sistema operacional baseado em [Linux](https://www.linux.org/)
 
-> Obs.: I recommend use Ubunut.
+> Obs.: Eu recomendo usar Ubunut.
 
-### MQTT conection 
+### Conexão MQTT 
 
-Para usar o desafio você precisará criar um Broker MQTT [aqui](https://www.hivemq.com/mqtt-cloud-broker/). Você vai precisar dos dados de conexão para configurar as variáveis de ambiente.
+Para rodar você precisará criar um Broker MQTT [aqui](https://www.hivemq.com/mqtt-cloud-broker/). Você vai precisar dos dados de conexão para configurar as variáveis de ambiente.
 
 Os dados de conexão deve ser algo como isso:
 
@@ -90,6 +93,8 @@ password: string | number
 
 Como alternativa você poderá usar o Broker MQTT criado por mim, as configuração de conexão já estão configuradas por padrão caso não seja fornecido as variáveis de ambiente.
 
+Para publicar e receber informações você pode usar o cliente web [aqui](https://websocketclient.hivemq.cloud/). Basta usar as informações abaixo.
+
 ```Typescript
 host=32d98850657747fc807be83950237f1b.s1.eu.hivemq.cloud
 port=8884
@@ -97,46 +102,47 @@ username=paulohenriquerosa
 password=Paulo@2022
 ```
 
-Para publicar e receber informações você pode usar o cliente web [aqui](https://websocketclient.hivemq.cloud/). Basta usar as informações de conexão do Broker MQTT.
 
 
-### Running the challenge
+### Rodando o desafio
 
-**Clone the challenge and access the folder**
+**Clone o desafio e acesse a pasta**
 
 ```bash
 $ git clone https://github.com/paulohenriquerosa/origem-assessment.git && cd origem-assessment
 ```
 
-**Follow the steps below**
+**Siga os passos abaixos**
 
 ```bash
-# Create the .env file
+# Crie o aquivo .env
 $ touch .env
 
-# Make sure the variables in '.env' to connect with your Broker MQTT
-# are set up correctly as in .env.example file.
+# Tenha certeza que tenha variáveis no arquivo '.env' como no
+# arquivo '.env.examplo' com as suas informações de conexão com
+# o seu Broker MQTT
 
-# Install the dependencies
+
+# Instalar as dependências
 $ yarn
 
-# To finish, run the program
+# Para iniciar o projeto
 $ yarn dev
 
-# Well done, program is started!
+# O programa está rodando!
 ```
 
 Para poder utilizar o programa você deve usar alguns comandos e informações que aparecerão na tela. Informações como essas: 
 
 
-**Motorcycle info**
+**Informações da moto**
 | Index |         Value          |
 |:-----:|:----------------------:|
 |chassi |       ${chassi}        |
 |topic  |bike/telemetry/${chassi}|
 
 
-**Keyboard commands**
+**Comando do teclado**
 | key   |         action         |
 |:-----:|:----------------------:|
 |q      |          Exit          |
@@ -148,8 +154,7 @@ Para poder utilizar o programa você deve usar alguns comandos e informações q
 |t      |          TakeBattery   |
 
 
-
-Para receber informações da moto você deve enviar o seguinte dado na publicação
+Para receber informações da moto em qualquer estado você deve enviar o seguinte dado na publicação
 
 ``` json
 {
@@ -158,10 +163,6 @@ Para receber informações da moto você deve enviar o seguinte dado na publica�
 
 ```
 
-## 📝 License
-
-This program is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
 
-Made with 💜 &nbsp;by paulo Henrique Rosa 👋 &nbsp;[See my linkedin](https://www.linkedin.com/in/paulo-henrique-rosa/)
+Feito 💜 &nbsp;por paulo Henrique Rosa 👋 &nbsp;[Veja meu linkedin](https://www.linkedin.com/in/paulo-henrique-rosa/)

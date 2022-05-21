@@ -51,7 +51,7 @@ class Motorcycle {
         context.sendData(context);
       }
     } catch (error) {
-      console.log("Invalida Syntax");
+      console.log("Invalid Json Syntax");
     }
   }
 
