@@ -3,11 +3,11 @@
 </h1>
 
 <h3 align="center">
-  Estágio em desenvolvimento web  - Origem Motos
+  Estágio em desenvolvimento web
 </h3>
-<p align="center">
+<h4 align="center">
   Origem Motos
-</p3>
+</h4>
 
 
 <p align="center">
@@ -26,15 +26,13 @@
   <a href="https://github.com/paulohenriquerosa/origem-assessment/issues">
     <img alt="Repository issues" src="https://img.shields.io/github/issues/paulohenriquerosa/origem-assessment">
   </a>
-  
-  <img alt="GitHub" src="https://img.shields.io/github/license/paulohenriquerosa/origem-assessment">
 </p>
 
 <p align="center">
-  <a href="#-sobre-o-desafio">About the challenge</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-tecnologias">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-começar">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-license">License</a>
+  <a href="#-sobre-o-desafio">Sobr o desafio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-começar">Começar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  
 </p>
 
 
@@ -165,4 +163,4 @@ Para receber informações da moto em qualquer estado você deve enviar o seguin
 
 ---
 
-Feito 💜 &nbsp;por paulo Henrique Rosa 👋 &nbsp;[Veja meu linkedin](https://www.linkedin.com/in/paulo-henrique-rosa/)
+Feito com 💜 &nbsp;por Paulo Henrique Rosa 👋 &nbsp;[Veja meu linkedin](https://www.linkedin.com/in/paulo-henrique-rosa/)
