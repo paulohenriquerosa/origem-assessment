@@ -92,7 +92,7 @@ Como alternativa você poderá usar o Broker MQTT criado por mim, as configuraç
 
 ```Typescript
 host=32d98850657747fc807be83950237f1b.s1.eu.hivemq.cloud
-port=8883
+port=8884
 username=paulohenriquerosa
 password=Paulo@2022
 ```
@@ -147,6 +147,16 @@ Para poder utilizar o programa você deve usar alguns comandos e informações q
 |i      |          InsertBattery |
 |t      |          TakeBattery   |
 
+
+
+Para receber informações você deve passar a seguinte dado na publicação
+
+``` json
+{
+  "request_data": true
+}
+
+```
 
 ## 📝 License
 
