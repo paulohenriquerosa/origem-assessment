@@ -31,10 +31,8 @@ class MQTTProvider implements ICommunication {
     this._client.end();
   }
 
-  public receiveData({ callback, context }: IReceiveDataDTO): void {
-    this._client.on("message", (topic, message) => {
-      callback(topic, message, context);
-    });
+  public receiveData({ callback }: IReceiveDataDTO): void {
+    this._client.on("message", callback);
   }
 
   public subscribe(topic: string): void {

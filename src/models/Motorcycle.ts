@@ -37,18 +37,17 @@ class Motorcycle {
     this._topic = `bike/telemetry/${this._chassi}`;
     this._clientCommunication.subscribe(this._topic);
     this._clientCommunication.receiveData({
-      callback: this._requestData,
-      context: this,
+      callback: this._requestData.bind(this),
     });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private _requestData(topic: string, message: Buffer, context: any): void {
+  private _requestData(topic: string, message: Buffer): void {
     try {
       const data = JSON.parse(message.toString());
 
       if (data?.request_data) {
-        context.sendData(context);
+        this.sendData();
       }
     } catch (error) {
       console.log("Invalid Json Syntax");
@@ -126,9 +125,9 @@ class Motorcycle {
     this._battery = battery;
   }
 
-  public sendData(self = this): void {
-    const data = self._telemetry();
-    self._clientCommunication.sendData({ topic: self._topic, data });
+  public sendData(): void {
+    const data = this._telemetry();
+    this._clientCommunication.sendData({ topic: this._topic, data });
   }
 
   public mileage(mile: number): void {
