@@ -43,9 +43,7 @@ class Motorcycle {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _requestData(topic: string, data: Record<string, any>): void {
-    if (data?.request_data) {
-      this.sendData();
-    }
+    data?.request_data && this.sendData();
   }
 
   public get chassi(): string {

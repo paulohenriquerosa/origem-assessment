@@ -22,6 +22,7 @@
     "rules": {
         "prettier/prettier": "error",
         "camelcase": "off",
+        "no-unused-expressions":"off",
         "no-underscore-dangle": "off",
         "import/no-unresolved": "error",
         "@typescript-eslint/naming-convention": [
