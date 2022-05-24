@@ -32,7 +32,14 @@ class MQTTProvider implements ICommunication {
   }
 
   public receiveData({ callback }: IReceiveDataDTO): void {
-    this._client.on("message", callback);
+    this._client.on("message", (topic, message) => {
+      try {
+        const decodedData = JSON.parse(message.toString());
+        callback(topic, decodedData);
+      } catch (error) {
+        console.log("Invalid Json Syntax");
+      }
+    });
   }
 
   public subscribe(topic: string): void {
